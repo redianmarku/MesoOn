@@ -30,7 +30,7 @@
 <section class="categories-section spad">
   <div class="container">
     <div class="section-title">
-      <h2>Kategorite dhe Klasat</h2>
+      <h2 id="kurset">Kategorite dhe Klasat</h2>
       <p>Mesimet jane te ndara ne kategori te ndryshme sipas klasave dhe nivelit te tyre. Ti duhet te regjistrohesh fillimisht dhe pastaj te ndjekesh klasen te ciles i perket.</p>
     </div>
     <div class="row">
@@ -148,7 +148,7 @@
 <!-- course section end -->
 
 {% if request.user.is_authenticated %}
-{% else %}
+
 <!-- signup section -->
 <section class="signup-section spad">
   <div class="signup-bg set-bg" data-setbg="{% static 'webuni/img/signup-bg.jpg' %}"></div>
@@ -161,7 +161,7 @@
             <p>Per tu regjistruar si mesues ne platforme ju duhet te plotesoni fushat e meposhtme dhe me pas do te keni aksesin e plote per te ngarkuar kurse dhe video.</p>
           </div>
           <!-- signup form -->
-          <form class="signup-form">
+          <form action="/kerkesa/" method="post" class="signup-form">{% csrf_token %}
             <input type="text" placeholder="Emri juaj" name="name">
             <input type="text" placeholder="Emaili" name="e-mail">
             <input type="text" placeholder="Numri i telefonit" name="phone">
@@ -173,6 +173,7 @@
   </div>
 </section>
 <!-- signup section end -->
+{% else %}
 {% endif %}
 
 {% endblock content %}
