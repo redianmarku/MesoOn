@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Dil" %}{% endblock %}
+<h1 class="entry-title">{% block blockname %} Dil {% endblock blockname %} </h1>
+{% block content %}
+
+<br>
+<br>
+<div class='col-md-8 offset-md-2' style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0kkBy5Ubwa8jk5_Sl_mnv11j6fiIjD-bvyZpxkb07Qr3TYKwcSw)">
+
+        <h1>{% trans "Sign Out" %}</h1>
+
+        <p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+        <form method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+          {% endif %}
+          <button class='btn btn-primary' type="submit">{% trans 'Sign Out' %}</button>
+        </form>
+</div>
+{% endblock %}
+
+{% block links %}
+<div class="col-md-4 ">
+  <hr>
+  <h3 style='background-color : #999;'>Our Side-Bar</h3>
+  <p>You can put any information here that you like , yu can also add anything thats necessary</p>
+  <div class="list-group">
+    <a href="#" class="list-group-item">Latest Posts</a>
+    <a href="#" class="list-group-item">Announcements</a>
+    <a href="#" class="list-group-item">Calenders</a>
+    <a href="#" class="list-group-item">etc</a>
+  </div>
+</div>
+{% endblock links%}

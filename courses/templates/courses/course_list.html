@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/1.jpg' %}">
+  <div class="container">
+    <div class="site-breadcrumb">
+      <a href="/">Kryefaqja</a>
+      <span>Kurset</span>
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
+
+
+<!-- search section -->
+<section class="search-section ss-other-page">
+  <div class="container">
+    <div class="search-warp">
+      <div class="section-title text-white">
+        <h2><span>Kerko kursin</span></h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <!-- search form -->
+          <form method="post" action="{% url 'courses:kerko_kurs' %}" class="intro-newslatter"> {% csrf_token %}
+            <input name="search" type="text" placeholder="Kerko kursin">
+            <button type="submit" class="site-btn btn-dark">Kerko kursin</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- search section end -->
+
+<div class="course-warp">
+  <ul class="course-filter controls">
+    <li class="control active" data-filter="all">Te gjitha lendet e kesaj klase</li>
+  </ul>
+<div class="featured-courses">
+
+      <div class="featured-course course-item">
+        <div class="row">
+          {% for course in courses %}
+          <div class="col-lg-6 pb-4">
+            <div class="course-info">
+              <div class="course-text">
+                <h5>{{course.klasa}}</h5>
+                <a href="{% url 'courses:course_detail' course.slug %}"><h3 class="">{{course.titulli|capfirst}}</h3></a>
+                <p>{{course.pershkrimi}}</p>
+                <div class="students"><a href="{% url 'courses:course_detail' course.slug %}" class="btn btn-primary">Mesimet e klases</a></div>
+              </div>
+              <div class="course-author">
+                <div class="ca-pic set-bg" data-setbg="{{ request.user.profile.profile_pic.url }}"></div>
+                <p>Krijuar nga : {{course.krijues|capfirst}}, <span>Mesues </span></p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

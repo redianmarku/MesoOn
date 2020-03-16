@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Hero section -->
+<section class="hero-section set-bg" data-setbg="{% static 'webuni/img/bg.jpg'%}">
+  <div class="container">
+    <div class="hero-text text-white">
+      {% if request.user.is_authenticated %}
+      <h2>Miresevini {{ request.user.username|capfirst }}</h2>
+      {% else %}
+      <h2>Kurset me te mira online falas</h2>
+      {% endif %}
+      <p>MesoOn eshte nje platforme online per mesimin e leksioneve shkollore nga nje staff i dedikuar me mesues dhe trajnere me pervoje te cilat do ja u bejne me te lehte mesimin ne nje menyre te lehte me ane te videove.</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <form method="post" action="{% url 'courses:kerko_kurs' %}" class="intro-newslatter"> {% csrf_token %}
+          <input name="search" type="text" placeholder="Kerko kursin">
+          <button type="submit" class="site-btn">Kerko kursin</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Hero section end -->
+
+<!-- categories section -->
+<section class="categories-section spad">
+  <div class="container">
+    <div class="section-title">
+      <h2>Kategorite dhe Klasat</h2>
+      <p>Mesimet jane te ndara ne kategori te ndryshme sipas klasave dhe nivelit te tyre. Ti duhet te regjistrohesh fillimisht dhe pastaj te ndjekesh klasen te ciles i perket.</p>
+    </div>
+    <div class="row">
+      {% for cat in category %}
+      <!-- categorie -->
+      <div class="col-lg-4 col-md-6">
+        <div class="categorie-item">
+          <div class="ci-thumb set-bg" data-setbg="{{ cat.imazhi.url }}"></div>
+          <div class="ci-text">
+
+            <h5>{{cat.titulli|capfirst}}</h5>
+
+            <p>{{ cat.pershkrimi|capfirst }}</p>
+            <span><a class="btn btn-success" href="/courses/{{ cat.id }}">Shiko lendet</a></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- categories section end -->
+{% if request.user.is_authenticated %}
+{% else %}
+<section class="course-section spad">
+  <div class="container">
+    <div class="section-title mb-0">
+      <h2>Shembuj kursesh</h2>
+      <p class="pb-3">Keto jani disa shembuj te kurseve te cilet nxensit ndjekin ne platformen tone.</p>
+    </div>
+  </div>
+  <div class="course-warp">                                     
+    <div class="row course-items-area">
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 finance">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <iframe width="100%" height="290" src="https://www.youtube.com/embed/EexyBwBG9dM?controls=0"  frameborder="0" controls allowfullscreen></iframe>  
+            
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Gjeometri</h5>
+              <p>Matemetika 10</p>
+              <div class="students">Klasa 10</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/4.jpg' %}"></div>
+              <p>Emri Mbiemri, <span>Mesuesit</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 design">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <iframe width="100%" height="290" src="https://www.youtube.com/embed/mNJ06S60B9k?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Elektroliza</h5>
+              <p>Kimia</p>
+              <div class="students">Klasa 12</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/4.jpg' %}"></div>
+              <p>Emri Mbiemri, <span>Mesuesit</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 web">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <iframe width="100%" height="290" src="https://www.youtube.com/embed/3Q_oYDQ2whs?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Trigonometri</h5>
+              <p>Marematika</p>
+              <div class="students">Klasa 11</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/4.jpg' %}"></div>
+              <p>Emri Mbiemri, <span>Mesuesit</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 photo">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <iframe width="100%" height="290" src="https://www.youtube.com/embed/LQFsEwcCO1E?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Qarku Elektrik</h5>
+              <p>Fizika</p>
+              <div class="students">Klasa 11</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/4.jpg' %}"></div>
+              <p>Emri Mbiemri, <span>Mesuesit</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+<!-- course section end -->
+
+{% if request.user.is_authenticated %}
+{% else %}
+<!-- signup section -->
+<section class="signup-section spad">
+  <div class="signup-bg set-bg" data-setbg="{% static 'webuni/img/signup-bg.jpg' %}"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="signup-warp">
+          <div class="section-title text-white text-left">
+            <h2>Regjistrohu si mesues</h2>
+            <p>Per tu regjistruar si mesues ne platforme ju duhet te plotesoni fushat e meposhtme dhe me pas do te keni aksesin e plote per te ngarkuar kurse dhe video.</p>
+          </div>
+          <!-- signup form -->
+          <form class="signup-form">
+            <input type="text" placeholder="Emri juaj" name="name">
+            <input type="text" placeholder="Emaili" name="e-mail">
+            <input type="text" placeholder="Numri i telefonit" name="phone">
+            <button class="site-btn">Dergo Kerkesen</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- signup section end -->
+{% endif %}
+
+{% endblock content %}

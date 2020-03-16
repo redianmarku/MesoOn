@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load static %}
+
+<hr>
+<hr>
+
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+<h1 class="entry-title">{% block blockname %} Profile. {% endblock blockname %} </h1>
+{% block content %}
+<!-- background-color: beige;
+    color: #ab00ff; -->
+<div class="page-info-section set-bg mb-3" data-setbg="{% static 'webuni/img/page-bg/2.jpg' %}" style="height:200px">
+  <div class="container">
+    <div class="site-breadcrumb">
+
+    </div>
+  </div>
+</div>
+<div class="container">
+  
+<div class="container-fluid pl-5 pr-5 pb-3 " style="border-radius:5px;background-color: beige;color: #ab00ff;"><h5><legend class="border-bottom mb-4 pt-4 display-3 text-center"> PROFILE</legend></h5>
+  <div class="content-section">
+    <div class="media">
+      <img class="rounded-circle account-img p-2" style="width:150px; height:150px;" src="{{ user.profile.profile_pic.url }}">
+      <div class="media-body">
+        <h2 class="account-heading  display-4 pt-4 pl-4 ">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+      </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data" class="">
+       {% csrf_token %}
+       <fieldset class="form-group">
+           {{ u_form|crispy }}
+           {{ p_form|crispy }}
+       </fieldset>
+       <div class="form-group">
+           <button class="btn btn-outline-info" type="submit">Update</button>
+       </div>
+   </form>
+</div>
+</div>
+{% comment %}
+<h2 class="text-center">My Created Events </h2>
+    <div class="card w-80 mb-3 ">
+    <div class="card-body">
+        <h2 class="card-title mb-5"><a class="text-capitalize" href="{% url 'events:event_detail' pk=event.pk %}">{{event.title}}</a> <span class="ml-5 badge badge-info">{{event.comments.count }} comments</span> </h2>
+    </div>
+    </div>
+</div>
+{% endcomment %}
+{% endblock %}

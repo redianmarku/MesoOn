@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+<!-- Page  -->
+<section class="blog-page spad pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+
+        <a href="{% url 'blogs:create_post' %}" style="color: white;" class="site-btn">Krijo nje postim</a>
+        {% if posts %}
+        {% for post in posts %}
+        <!-- blog post -->
+        <div class="blog-post">
+          <img src="img/blog/1.jpg" alt="">
+          <h3>{{ post.title }}</h3>
+          <div class="blog-metas">
+            <div class="blog-meta author">
+              <div class="post-author set-bg" data-setbg="/media/{{ post.author.profile.profile_pic }}"></div>
+              <a href="#">{{ post.author|capfirst }}</a>
+            </div>
+            <div class="blog-meta">
+              <a href="#">{{ post.created_date }}</a>
+            </div>
+          </div>
+          <p>{{ post.text|capfirst }} </p>
+          <a href="/blog/{{ post.id }}" class="btn btn-primary">Read More</a>
+        </div>
+        {% endfor %}
+        {% else %}
+
+
+        {% endif %}
+        
+  
+      </div>
+      <div class="col-lg-3 col-md-5 col-sm-9 sidebar">
+        <div class="sb-widget-item">
+          <form class="search-widget">
+            <input type="text" placeholder="Kerko">
+            <button><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+        <div class="sb-widget-item">
+          <h4 class="sb-w-title">Klasat</h4>
+          <ul>
+            <li><a href="#">Programim</a></li>
+            <li><a href="#">Rrjete sociale</a></li>
+            <li><a href="#">Lajmet</a></li>
+            <li><a href="#">Eventet</a></li>
+          </ul>
+        </div>
+        <div class="sb-widget-item">
+          <h4 class="sb-w-title">Arkiva</h4>
+          <ul>
+            <li><a href="#">February 2018</a></li>
+            <li><a href="#">March 2018</a></li>
+            <li><a href="#">April 2018</a></li>
+            <li><a href="#">May 2018</a></li>
+            <li><a href="#">June 2018</a></li>
+          </ul>
+        </div>
+        <div class="sb-widget-item">
+          <h4 class="sb-w-title">Hashtage</h4>
+          <div class="tags">
+            <a href="#">education</a>
+            <a href="#">courses</a>
+            <a href="#">development</a>
+            <a href="#">design</a>
+            <a href="#">on line courses</a>
+            <a href="#">wp</a>
+            <a href="#">html5</a>
+            <a href="#">music</a>
+          </div>
+        </div>
+        <div class="sb-widget-item">
+          <div class="add">
+            <a href="#"><img src="img/add.jpg" alt=""></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Page end -->
+
+{% endblock content %}

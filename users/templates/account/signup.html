@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load static %}
+
+{% block head_title %}{% trans "Regjistrohu" %}{% endblock %}
+<h1 class="entry-title">{% block blockname %} Regjistrohu {% endblock blockname %} </h1>
+{% block content %}
+<div class="page-info-section set-bg mb-3" data-setbg="{% static 'webuni/img/page-bg/2.jpg' %}" style="height:200px">
+  <div class="container">
+    <div class="site-breadcrumb">
+
+    </div>
+  </div>
+</div>
+<div class='col-md-6 offset-md-3 mt-5 mb-4 p-4' >
+
+    <h1>{% trans "Regjistrohu" %}</h1>
+
+    <p>{% blocktrans %}Tashme ke nje llogari? Ju lutem <a href="{{ login_url }}">hyr</a>.{% endblocktrans %}</p>
+
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      {% if redirect_field_value %}
+      <input type="hidden"  name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class='btn btn-primary' type="submit">{% trans "Regjistrohu" %} &raquo;</button>
+    </form>
+</div>
+
+<hr>
+
+{% endblock %}

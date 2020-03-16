@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block post_detail_link %}
+
+{% endblock %}
+
+{% block content %}
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/2.jpg' %}">
+  <div class="container">
+    <div class="site-breadcrumb">
+      <a href="#">Home</a>
+      <span>Courses/</span>
+      <span>memberships/</span>
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="container">
+      <h1 class="pb-4">Membership List</h1>
+      <div class="row">
+        {% for membership in memberships %}
+        <div class="col-sm-4 col-md-4">
+          <h3>{{ membership.membership_type }}</h3>
+          <h4>Price : ${{ membership.price }} <small>/month</small> </h4>
+          <h5>INCLUDED COURSES</h5>
+          <ul>
+            {% for course in membership.membershipsallowed.all %}
+              <li>Title : {{course.title}}</li>
+            {% endfor %}
+          </ul>
+          {% if membership.membership_type != 'Free' %}
+          <form class="" action="{% url 'memberships:select_membership' %}" method="POST">
+            {% csrf_token %}
+            {% if membership.membership_type != current_membership %}
+            <button type="submit" class="btn btn-warning">Select</button>
+            {% else %}
+            <small>This is Your Current Plan</small>
+            {% endif %}
+            <input type="hidden" name="membership_type" value="{{membership.membership_type}}">
+          </form>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+{% endblock content %}

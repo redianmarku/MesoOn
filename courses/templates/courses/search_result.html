@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-top-bg.jpg'%}">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <br><br>
+        <br>
+        <br><br>
+        <br>
+        <form method="post" action="{% url 'courses:kerko_kurs' %}" class="intro-newslatter"> {% csrf_token %}
+          <input name="search" type="text" placeholder="Kerko kursin">
+          <button type="submit" class="site-btn">Kerko kursin</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container">
+    <h1 class=" mt-2 text-center">Rezultatet e kerkimit ({{ results|length }}):</h1>
+    <div class="row course-items-area">
+        <!-- course -->
+        {% if results %}
+        {% for lesson in results %}
+        <div class="mix col-lg-4 col-md-4 col-sm-6 finance">
+          <div class="course-item">
+              <a href="/courses/{{ lesson.lenda.slug }}/">
+            <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+              <iframe width="100%" height="290" src="https://www.youtube.com/embed/{{ lesson.video_id }}?controls=0"  frameborder="0" controls allowfullscreen></iframe>  
+              
+            </div>
+            <div class="course-info">
+              <div class="course-text">
+                <h5>{{ lesson.titulli }}</h5>
+                <p>{{ lesson.lenda }}</p>
+                <div class="students">Klasa 10</div>
+              </div>
+            </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+        {% else %}
+        <div class="text-center">
+            <h4>Nuk ka asnje rezultat.</h4>
+        </div>
+        {% endif %}
+        <!-- course -->
+      </div>
+</div>
+
+
+
+{% endblock %}
