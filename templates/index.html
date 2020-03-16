@@ -8,7 +8,12 @@
   <div class="container">
     <div class="hero-text text-white">
       {% if request.user.is_authenticated %}
-      <h2>Miresevini {{ request.user.username|capfirst }}</h2>
+      <h2>Miresevini {% if request.user.profile.is_teacher == True %}
+         mesues,
+        {% endif %} {{ request.user.username|capfirst }}
+
+       
+      </h2>
       {% else %}
       <h2>Kurset me te mira online falas</h2>
       {% endif %}
@@ -36,7 +41,7 @@
     <div class="row">
       {% for cat in category %}
       <!-- categorie -->
-      <div class="col-lg-4 col-md-6">
+      <div data-aos="zoom-in" class="col-lg-4 col-md-6">
         <div class="categorie-item">
           <div class="ci-thumb set-bg" data-setbg="{{ cat.imazhi.url }}"></div>
           <div class="ci-text">
@@ -150,6 +155,43 @@
 {% if request.user.is_authenticated %}
 
 <!-- signup section -->
+{% if request.user.profile.is_teacher == True %}
+<div class="container-fluid">
+  <h1 class="text-center">Llogaria juaj ka akses mesuesi</h1><br>
+  <p class="text-center">Duke pasur nje llogari mesuesi ju tashme keni akses me te plote ne kete platform. Ju mund te kryeni me shume funksione se llogaria fillestare e nxenesit. Disa nga keto funksione jane:</p>
+
+  <div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
+    <div class="col-md-4 text-center">
+      <h3 class="p-4">Ju mund te krijoni klasen tuaj</h3> 
+      <a href="" class="btn btn-outline-primary m-4">Krijo klasen</a>
+    </div>
+    <div class="col-md-8">
+      <img class="img-fluid w-100" src="{% static 'webuni/img/categories/4.jpg' %}" alt="">
+    </div>
+  </div>
+
+  <div data-aos="fade-left" class="row mt-4 mb-4 bg-light">
+      <div class="col-md-8">
+        <img class="img-fluid w-100" src="{% static 'webuni/img/categories/2.jpg' %}" alt="">
+      </div>
+  
+    <div class="col-md-4 text-center">
+      <h3 class="p-4">Ju mund te krijoni lendet tuaja</h3> 
+      <a href="" class="btn btn-outline-primary m-4">Krijo lenden</a>
+  </div>
+</div>
+
+<div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
+  <div class="col-md-4 text-center">
+    <h3 class="p-4">Ju mund te ngarkoni mesimet dhe videot tuaja.</h3> 
+    <a href="" class="btn btn-outline-primary m-4">Krijo mesimin</a>
+  </div>
+  <div class="col-md-8">
+    <img class="img-fluid w-100" src="{% static 'webuni/img/categories/1.jpg' %}" alt="">
+  </div>
+</div>
+
+{% else %}
 <section class="signup-section spad">
   <div class="signup-bg set-bg" data-setbg="{% static 'webuni/img/signup-bg.jpg' %}"></div>
   <div class="container-fluid">
@@ -159,6 +201,7 @@
           <div class="section-title text-white text-left">
             <h2>Regjistrohu si mesues</h2>
             <p>Per tu regjistruar si mesues ne platforme ju duhet te plotesoni fushat e meposhtme dhe me pas do te keni aksesin e plote per te ngarkuar kurse dhe video.</p>
+            
           </div>
           <!-- signup form -->
           <form action="/kerkesa/" method="post" class="signup-form">{% csrf_token %}
@@ -172,6 +215,8 @@
     </div>
   </div>
 </section>
+
+{% endif %}
 <!-- signup section end -->
 {% else %}
 {% endif %}

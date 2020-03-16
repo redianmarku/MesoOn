@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="{% static 'webuni/css/owl.carousel.css' %}"/>
 	<link rel="stylesheet" href="{% static 'webuni/css/style.css'%}"/>
 	<link rel="stylesheet" href="{% static 'webuni/css/freelancer.css'%}"/>
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
 	<!--[if lt IE 9]>
@@ -50,6 +51,11 @@
 					<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#kurset">Kurse</a>
 				  </li>
 			  </li>
+			  {% if request.user.profile.is_teacher == True %}
+			  <li class="nav-item mx-0 mx-lg-1">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'courses:contact' %}">Mesues</a>
+			  </li>
+			  {% else %}
 			  <li class="nav-item mx-0 mx-lg-1">
 				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'courses:contact' %}">Kontakt</a>
 			  </li>
@@ -59,6 +65,7 @@
 			  <li class="nav-item mx-0 mx-lg-1">
 				<a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'blogs:post_list' %}">Blog</a>
 			  </li>
+			  {% endif %}
 			  {% if request.user.is_authenticated %}
 			  
 			  <div class="dropdown show">
@@ -186,4 +193,8 @@
 	<script src="{% static 'webuni/js/owl.carousel.min.js' %}"></script>
 	<script src="{% static 'webuni/js/main.js' %}"></script>
 	<script src="{% static 'webuni/js/freelancer.js' %}"></script>
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </html>

@@ -42,9 +42,14 @@
            {{ p_form|crispy }}
        </fieldset>
        <div class="form-group">
-           <button class="btn btn-outline-info" type="submit">Update</button>
+           <button class="btn btn-outline-success" type="submit">Perditso profilin</button>
        </div>
    </form>
+   {% if request.user.profile.is_teacher == True %}
+   <div class="alert alert-info">Llogaria juaj ka akses te plote mesuesi.</div>
+   {% else %}
+   <div class="alert alert-info">Llogaria juaj ka vetem akses si nxenes.</div>
+   {% endif %}
 </div>
 </div>
 {% comment %}

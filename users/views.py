@@ -71,7 +71,14 @@ def kerkesa(request):
             [email],
             fail_silently=False,
         )
-        messages.success(request, f'Kerkesa u dergua me sukses.')
+        send_mail(
+            'MesoOn',
+            'Dikush beri kerkese per llogari mesuesi. Me info: ' + emri + ' , ' + email + ' , ' + numri_tel + ' , ' + str(prof) + '.',
+            'mesoon@no-reply.com',
+            ['redian1marku@gmail.com'],
+            fail_silently=False,
+        )
+        messages.info(request, f'Kerkesa u dergua me sukses, ju do te njoftoheni me email.')
         return redirect('courses:home')
 
 
