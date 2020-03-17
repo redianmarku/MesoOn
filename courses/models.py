@@ -6,7 +6,7 @@ from django.urls import reverse
 class Klasa(models.Model):
     titulli = models.CharField(max_length=150)
     pershkrimi = models.TextField(max_length= 200, null=True)
-    imazhi = models.ImageField(upload_to='cat_images', default='default.jpg')
+    imazhi = models.ImageField(upload_to='cat_images', default='cat_images/default.jpg')
 
     def __str__(self):
         return '{}'.format(self.titulli)
@@ -39,7 +39,7 @@ class Lendet(models.Model):
 class Lesson(models.Model):
     slug = models.SlugField()
     titulli = models.CharField(max_length=30)
-    lenda = models.ForeignKey(Lendet,on_delete=models.SET_NULL,null=True)
+    lenda = models.ForeignKey(Lendet,on_delete=models.CASCADE)
     video_id = models.CharField(max_length=11)
     pozicioni = models.IntegerField()
 

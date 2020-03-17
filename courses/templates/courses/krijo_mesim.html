@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <h1>Krijo mesim</h1>
+        <form method="post" action="/krijo/mesim">{% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn mb-4 btn-primary">Krijo lende</button>
+        </form>
+</div>
+{% endblock %}

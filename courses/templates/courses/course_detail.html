@@ -88,8 +88,8 @@
               <h5 class="pb-3">Mesimi {{lesson.pozicioni}} <a id="vazhdo" href="{{ lesson.get_absolute_url }}#video"><span class="pl-4">{{lesson.titulli}}</span></a></h5>
             {% endfor %}
           {% endif %}
-          {% if object.lessons == None %}
-            <h4>Nuk ka akoma asnje mesim per kete klase!</h4>
+          {% if course.lessons|length == 0 %}
+          <div class="alert alert-danger">Nuk ka akoma asnje mesim per kete klase!</div>
           {% endif %} 
         </div>
       </div>

@@ -1,3 +1,4 @@
+import secrets
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView,DetailView,View
 from courses.models import Lendet,Lesson,Klasa
@@ -6,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import KlasaForm
+from .forms import KlasaForm, LendaForm, MesimiForm
 # Create your views here.
 
 class HomeView(TemplateView):
@@ -78,6 +79,40 @@ def krijo_klase(request):
     return render(request, 'courses/krijo_klase.html', context)
 
 
+@login_required
+def krijo_lende(request):
+    if request.method == 'POST':
+        form = LendaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            klasa = form.cleaned_data['klasa']
+            slug = klasa.id
+            messages.success(request, f'Lenda juaj u krijua.')
+            return redirect('/courses/' + str(slug))
+    else:
+        form = LendaForm(initial={'krijues':request.user.id, 'slug':secrets.token_hex(nbytes=16)})
+    context = {
+        'form':form
+    }
+    return render(request, 'courses/krijo_lende.html', context)
+
+
+@login_required
+def krijo_mesim(request):
+    if request.method == 'POST':
+        form = MesimiForm(request.POST)
+        if form.is_valid():
+            form.save()
+            lenda = form.cleaned_data['lenda']
+            slug = lenda.slug
+            messages.success(request, f'Mesimi juaj u krijua.')
+            return redirect('/courses/' + str(slug) )
+    else:
+        form = MesimiForm(initial={'slug':secrets.token_hex(nbytes=16)})
+    context = {
+        'form':form
+    }
+    return render(request, 'courses/krijo_mesim.html', context)
 
 # def get(self,request,course_slug,lesson_slug,*args,**kwargs):
 #
