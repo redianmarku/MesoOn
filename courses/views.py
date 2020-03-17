@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView,ListView,DetailView,View
 from courses.models import Lendet,Lesson,Klasa
 from memberships.models import UserMembership
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from .forms import KlasaForm
 # Create your views here.
 
 class HomeView(TemplateView):
@@ -58,6 +60,22 @@ def SearchView(request):
             'results':results
         }
         return render(request, 'courses/search_result.html', context)
+
+
+@login_required
+def krijo_klase(request):
+    if request.method == 'POST':
+        form = KlasaForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Klasa juaj u krijua.')
+            return redirect('courses:home')
+    else:
+        form = KlasaForm()
+    context = {
+        'form':form
+    }
+    return render(request, 'courses/krijo_klase.html', context)
 
 
 

@@ -156,14 +156,14 @@
 
 <!-- signup section -->
 {% if request.user.profile.is_teacher == True %}
-<div class="container-fluid">
+<div class="container">
   <h1 class="text-center">Llogaria juaj ka akses mesuesi</h1><br>
   <p class="text-center">Duke pasur nje llogari mesuesi ju tashme keni akses me te plote ne kete platform. Ju mund te kryeni me shume funksione se llogaria fillestare e nxenesit. Disa nga keto funksione jane:</p>
 
   <div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
     <div class="col-md-4 text-center">
       <h3 class="p-4">Ju mund te krijoni klasen tuaj</h3> 
-      <a href="" class="btn btn-outline-primary m-4">Krijo klasen</a>
+      <a href="/krijo/klase" class="btn btn-outline-primary m-4">Krijo klasen</a>
     </div>
     <div class="col-md-8">
       <img class="img-fluid w-100" src="{% static 'webuni/img/categories/4.jpg' %}" alt="">
