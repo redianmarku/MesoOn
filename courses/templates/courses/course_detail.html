@@ -85,7 +85,9 @@
           <h4>Mesimet ne kete klase</h4>
           {% if course.lessons != None  %}
             {% for lesson in course.lessons %}
+            <div data-aos="fade-right" >
               <h5 class="pb-3">Mesimi {{lesson.pozicioni}} <a id="vazhdo" href="{{ lesson.get_absolute_url }}#video"><span class="pl-4">{{lesson.titulli}}</span></a></h5>
+            </div>
             {% endfor %}
           {% endif %}
           {% if course.lessons|length == 0 %}

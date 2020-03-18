@@ -43,7 +43,7 @@ class CourseDetailView(DetailView):
     model = Lendet
 
 
-
+ 
 class LessonDetailView(View,LoginRequiredMixin):
     def get(self, request, course_slug, lesson_slug, *args, **kwargs):
         course = get_object_or_404(Lendet, slug=course_slug)
@@ -65,6 +65,9 @@ def SearchView(request):
 
 @login_required
 def krijo_klase(request):
+    if not request.user.profile.is_teacher == True:
+        messages.error(request, f'Llogaria juaj nuk ka akses ne kete url vetem llogarite e mesuesve!')
+        return redirect('courses:home')
     if request.method == 'POST':
         form = KlasaForm(data=request.POST, files=request.FILES)
         if form.is_valid():
@@ -81,6 +84,9 @@ def krijo_klase(request):
 
 @login_required
 def krijo_lende(request):
+    if not request.user.profile.is_teacher == True:
+        messages.error(request, f'Llogaria juaj nuk ka akses ne kete url vetem llogarite e mesuesve!')
+        return redirect('courses:home')
     if request.method == 'POST':
         form = LendaForm(request.POST)
         if form.is_valid():
@@ -99,6 +105,9 @@ def krijo_lende(request):
 
 @login_required
 def krijo_mesim(request):
+    if not request.user.profile.is_teacher == True:
+        messages.error(request, f'Llogaria juaj nuk ka akses ne kete url vetem llogarite e mesuesve!')
+        return redirect('courses:home')
     if request.method == 'POST':
         form = MesimiForm(request.POST)
         if form.is_valid():
@@ -113,6 +122,16 @@ def krijo_mesim(request):
         'form':form
     }
     return render(request, 'courses/krijo_mesim.html', context)
+
+
+def view_404(request, exception):
+    return render(request, '404.html')
+
+def view_403(request, exception):
+    return render(request, '403.html')
+
+def view_500(request):
+    return render(request, '500.html')
 
 # def get(self,request,course_slug,lesson_slug,*args,**kwargs):
 #

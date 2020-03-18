@@ -163,7 +163,7 @@
   <div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
     <div class="col-md-4 text-center">
       <h3 class="p-4">Ju mund te krijoni klasen tuaj</h3> 
-      <a href="/krijo/klase" class="btn btn-outline-primary m-4">Krijo klasen</a>
+      <a href="{% url 'courses:krijo_klase' %}" class="btn btn-outline-primary m-4">Krijo klasen</a>
     </div>
     <div class="col-md-8">
       <img class="img-fluid w-100" src="{% static 'webuni/img/categories/4.jpg' %}" alt="">
@@ -177,14 +177,14 @@
   
     <div class="col-md-4 text-center">
       <h3 class="p-4">Ju mund te krijoni lendet tuaja</h3> 
-      <a href="/krijo/lende" class="btn btn-outline-primary m-4">Krijo lenden</a>
+      <a href="{% url 'courses:krijo_lende' %}" class="btn btn-outline-primary m-4">Krijo lenden</a>
   </div>
 </div>
 
 <div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
   <div class="col-md-4 text-center">
     <h3 class="p-4">Ju mund te ngarkoni mesimet dhe videot tuaja.</h3> 
-    <a href="/krijo/mesim" class="btn btn-outline-primary m-4">Krijo mesimin</a>
+    <a href="{% url 'courses:krijo_mesim' %}" class="btn btn-outline-primary m-4">Krijo mesimin</a>
   </div>
   <div class="col-md-8">
     <img class="img-fluid w-100" src="{% static 'webuni/img/categories/1.jpg' %}" alt="">
@@ -193,7 +193,7 @@
 </div>
 
 {% else %}
-<section class="signup-section spad">
+<section data-aos="zoom-out" class="signup-section spad">
   <div class="signup-bg set-bg" data-setbg="{% static 'webuni/img/signup-bg.jpg' %}"></div>
   <div class="container-fluid">
     <div class="row">
