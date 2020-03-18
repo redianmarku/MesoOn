@@ -26,7 +26,7 @@ SECRET_KEY = '5o)5cgi62(z+=u$%m6-#d02nar7xf=5fml6!1&l(ue0imbrnd%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'markuredian.pythonanywhere']
 
 
 # Application definition
@@ -141,12 +141,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
     ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/cdn/static_cdn")
+STATIC_ROOT = '/home/markuredian/MesoOn/static'
 
 #media
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = '/home/markuredian/MesoOn/media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
