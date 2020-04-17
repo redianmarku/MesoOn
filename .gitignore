@@ -2,3 +2,5 @@
 db.sqlite3
 .vscode/
 .vs
+/env
+env/
