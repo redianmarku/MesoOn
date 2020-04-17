@@ -1,5 +1,5 @@
 # MesoOn
-Online learning platform with Django
+Online learning platform builded with Django
 
 ## Setup
 1. Git Clone this project: https://github.com/redianmarku/MesoOn
