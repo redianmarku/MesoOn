@@ -141,12 +141,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static')
     ]
 
-STATIC_ROOT = '/home/markuredian/MesoOn/static'
 
 #media
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = '/home/markuredian/MesoOn/media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
