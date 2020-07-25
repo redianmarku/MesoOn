@@ -181,8 +181,8 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 EMAIL_USE_TLS = True
 EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='redian1marku@gmail.com'
-EMAIL_HOST_PASSWORD='realitet'
+EMAIL_HOST_USER='put your email here'
+EMAIL_HOST_PASSWORD='put your email password here'
 EMAIL_PORT = 587 
 
 
